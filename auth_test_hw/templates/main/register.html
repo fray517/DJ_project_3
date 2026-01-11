@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 50px auto; padding: 30px; 
+           background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">
+        Регистрация
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.username.id_for_label }}" 
+                   style="display: block; margin-bottom: 5px; color: #555;">
+                Имя пользователя:
+            </label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.username.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.email.id_for_label }}" 
+                   style="display: block; margin-bottom: 5px; color: #555;">
+                Email:
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.email.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.phone_number.id_for_label }}" 
+                   style="display: block; margin-bottom: 5px; color: #555;">
+                Номер телефона (необязательно):
+            </label>
+            {{ form.phone_number }}
+            {% if form.phone_number.errors %}
+                <div style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.phone_number.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="{{ form.password1.id_for_label }}" 
+                   style="display: block; margin-bottom: 5px; color: #555;">
+                Пароль:
+            </label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+                <div style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.password1.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <div style="margin-bottom: 30px;">
+            <label for="{{ form.password2.id_for_label }}" 
+                   style="display: block; margin-bottom: 5px; color: #555;">
+                Подтверждение пароля:
+            </label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div style="color: #dc3545; font-size: 0.9rem; margin-top: 5px;">
+                    {{ form.password2.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" 
+                style="width: 100%; padding: 12px; background-color: #007bff; 
+                       color: white; border: none; border-radius: 4px; 
+                       font-size: 1rem; cursor: pointer; transition: background-color 0.3s;">
+            Зарегистрироваться
+        </button>
+    </form>
+    <p style="text-align: center; margin-top: 20px; color: #666;">
+        Уже есть аккаунт? 
+        <a href="{% url 'main:login' %}" style="color: #007bff; text-decoration: none;">
+            Войти
+        </a>
+    </p>
+</div>
+
+<style>
+    input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+    button:hover {
+        background-color: #0056b3 !important;
+    }
+</style>
+{% endblock %}
